@@ -55,7 +55,7 @@ class MyPlugin(Star):
         try:
             message_parts = event.message_str.split()
             if len(message_parts) >= 2 and message_parts[1].isdigit():
-                num = max(1, min(int(message_parts[1]),10))
+                num = max(1, min(int(message_parts[1]),50))
                 result = ""
                 for _ in range(num):
                     result += f"{self.draw()}\n"
