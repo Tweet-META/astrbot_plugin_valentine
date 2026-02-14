@@ -55,12 +55,15 @@ class MyPlugin(Star):
         try:
             message_parts = event.message_str.split()
             if len(message_parts) >= 2 and message_parts[1].isdigit():
-                num = min(int(message_parts[1]),10)
+                num = max(1, min(int(message_parts[1]),10))
+                result = ""
                 for _ in range(num):
-                    result = result + self.draw() + "\n"
-                yield event.plain_result(str(result))
+                    result += f"{self.draw()}\n"
+
+                result = result.rstrip()
+                yield event.plain_result(result)
             else:
-                yield event.plain_result(str(self.draw))
+                yield event.plain_result(self.draw())
         except Exception as e:
             logger.error("draw error: " + str(e))
             yield event.plain_result("喵？发生错误了喵！")
