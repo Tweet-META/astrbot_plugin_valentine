@@ -58,9 +58,9 @@ class MyPlugin(Star):
                 num = min(int(message_parts[1]),10)
                 for _ in range(num):
                     result = result + self.draw() + "\n"
-                yield event.plain_result(result)
+                yield event.plain_result(str(result))
             else:
-                yield event.plain_result(self.draw)
+                yield event.plain_result(str(self.draw))
         except Exception as e:
             logger.error("draw error: " + str(e))
             yield event.plain_result("喵？发生错误了喵！")
@@ -69,7 +69,7 @@ class MyPlugin(Star):
     @filter.command("valentine")
     async def help_valentine(self, event: AstrMessageEvent):
         try:
-            help_text = {
+            help_text = (
                 "情人节限定卡池开催 \n"
                 "编辑发送“/咱俩试试？”\n"
                 "即有机会获得限定ssr“好呀宝宝”\n"
@@ -95,7 +95,7 @@ class MyPlugin(Star):
                 "好呀宝宝喵！ 0.009%\n"
                 "其实我也喜欢你好久了（隐藏款）0.001％\n"
                 "*抽取概率为综合概率。\n"
-            }
+            )
             yield event.plain_result(help_text)
             return
         except Exception as e:
